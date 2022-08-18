@@ -65,6 +65,10 @@ btnNext.addEventListener('click', () => {
 renderPokemon(searchPokemon)
 
 const pokedex__voice = (pokemon) => {
+    // Impede que os dados de um pokemon sobreponha 
+    // o de outro caso o botão seja apetado várias vezes seguidas 
+    window.speechSynthesis.cancel() 
+
     // Initialize new SpeechSynthesisUtterance object
     let speech = new SpeechSynthesisUtterance();
 
