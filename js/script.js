@@ -35,6 +35,7 @@ const renderPokemon = async (pokemon) => {
 
         input.value = ''
         searchPokemon = data.id
+        pokedex__voice(data)
     }
     else{
         pokemonImage.style.display = 'none'
@@ -62,3 +63,27 @@ btnNext.addEventListener('click', () => {
 })
 
 renderPokemon(searchPokemon)
+
+const pokedex__voice = (pokemon) => {
+    // Initialize new SpeechSynthesisUtterance object
+    let speech = new SpeechSynthesisUtterance();
+
+    // Set Speech Language
+    speech.lang = "en";
+
+    let voices = window.speechSynthesis.getVoices()
+
+    speech.voice = voices[4]
+
+    array = pokedex__voice_text(pokemon)
+    
+    array.forEach(element => {
+        speech.text = element
+        window.speechSynthesis.speak(speech)
+    })
+}
+
+const pokedex__voice_text = (pokemon) => {
+    let text = [pokemon.name, `Type: ${pokemon["types"]["0"]["type"]["name"]}`]
+    return text
+}
