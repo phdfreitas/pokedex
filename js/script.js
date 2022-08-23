@@ -88,6 +88,21 @@ const pokedex__voice = (pokemon) => {
 }
 
 const pokedex__voice_text = (pokemon) => {
-    let text = [pokemon.name, `Type: ${pokemon["types"]["0"]["type"]["name"]}`]
+    let text = ""
+
+    let types = pokemon["types"]
+    let arr_types = []
+
+    types.forEach(element => {
+        arr_types.push(element["type"]["name"])
+    })
+
+    if(arr_types.length > 1){
+        text = [pokemon.name, `Types: ${arr_types[0]} and ${arr_types[1]}`]
+    }
+    else {
+        text = [pokemon.name, `Type: ${arr_types[0]}`]
+    }
+
     return text
 }
